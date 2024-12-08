@@ -10,7 +10,7 @@
 
 ![image](https://github.com/user-attachments/assets/a40d8a1c-fd40-4161-9b50-300554566f78)
 
-二、项目提供如下restful API
+二、项目提供如下restful API，通过运行application可以启动spring boot应用
 
 1、/transfer
 
