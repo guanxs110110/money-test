@@ -116,7 +116,7 @@ public class BankAccountControllerTest {
     }
 }
 
-单元测试正常可以正常通过：
+单元测试结果正常可以通过：
 
 ![image](https://github.com/user-attachments/assets/fbc2c0c2-d114-4388-bb8f-8cac6dbc40bc)
 
