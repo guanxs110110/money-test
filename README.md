@@ -11,14 +11,21 @@
 ![image](https://github.com/user-attachments/assets/a40d8a1c-fd40-4161-9b50-300554566f78)
 
 二、项目提供如下restful API
+
 1、/transfer
+
 转账API
+
 2、/getBalance
+
 获取账号信息和余额
+
 3、/checkBalance
+
 校验余额是否充足
 
 三、启动spring boot项目，会初始化2个账号到H2DB
+
 ![image](https://github.com/user-attachments/assets/eaa3b226-eb70-42f0-995a-b03100e5fc01)
 
 四、可以直接通过BankAccountControllerTest进行API单元测试
@@ -109,6 +116,7 @@ public class BankAccountControllerTest {
 }
 
 单元测试正常可以正常通过：
+
 ![image](https://github.com/user-attachments/assets/fbc2c0c2-d114-4388-bb8f-8cac6dbc40bc)
 
 
