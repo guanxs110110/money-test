@@ -24,7 +24,7 @@
 
 校验余额是否充足
 
-三、启动spring boot项目，会初始化2个账号（TestAccountA与TestAccountB）到H2DB
+三、启动spring boot项目，会初始化2个账号（TestAcountA与TestAcountB）到H2DB
 
 ![image](https://github.com/user-attachments/assets/eaa3b226-eb70-42f0-995a-b03100e5fc01)
 
