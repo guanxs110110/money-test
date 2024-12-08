@@ -1,7 +1,7 @@
 # money-test
 简单模拟资金转账的服务
 
-一、JDK1.8 + h2 db + money API,  eclipse构建结构如下：
+一、JDK1.8 + h2 db + money API + JPA,  eclipse构建结构如下：
 
 
 
