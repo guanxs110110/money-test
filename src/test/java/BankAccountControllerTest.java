@@ -83,5 +83,24 @@ public class BankAccountControllerTest {
     			.andExpect(MockMvcResultMatchers.jsonPath("$").value("failed"));
     }
     
-    
+    @Test
+    public void testBankAccountCheckBalance() throws Exception {
+
+        //transfer 0 HKD, check balance expected return failed
+        mockMvc.perform(MockMvcRequestBuilders.get("/checkBalance")
+                        .param("accountName", "TestAcountA")
+                        .param("transferAmount", "0")
+                        .param("currency", "HKD"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").value("failed"));
+
+        //transfer -100 HKD, check balance expected return failed
+        mockMvc.perform(MockMvcRequestBuilders.get("/checkBalance")
+                        .param("accountName", "TestAcountA")
+                        .param("transferAmount", "-100")
+                        .param("currency", "HKD"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").value("failed"));
+    }
+
 }
