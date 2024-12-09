@@ -1,3 +1,4 @@
+import com.guan.money.service.BankAccountService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.guan.money.application.Application;
 
+import java.math.BigDecimal;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BankAccountControllerTest {
@@ -20,6 +23,9 @@ public class BankAccountControllerTest {
 	WebApplicationContext wac;
     
     private MockMvc mockMvc;
+
+	@Autowired
+	private BankAccountService bankAccountService;
     
     @Before
     public void setupMockMvc() {
@@ -102,5 +108,18 @@ public class BankAccountControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value("failed"));
     }
+
+	@Test
+	public void testCreateBankAccount() throws Exception {
+
+		//create a new bank account TestAcountC with 100 HKD balance
+		bankAccountService.createBankAccount("TestAcountC", "HKD", new BigDecimal(100));
+
+		//while call getBalance API, TestAcountC exists and should have 100 hkd balance
+		mockMvc.perform(MockMvcRequestBuilders.get("/getBalance")
+						.param("accountName", "TestAcountC"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.balance").value(100));
+	}
 
 }
