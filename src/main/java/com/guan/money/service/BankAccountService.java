@@ -126,7 +126,9 @@ public class BankAccountService {
     	if (acount == null) {
     		throw new RuntimeException("bank account can not be null!");
     	}
-    	
+        if (mount ==null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw  new RuntimeException("Transferred amount must be greater than zero!");
+        }
     	CurrencyUnit currencyUnit = Monetary.getCurrency(currency);
     	MonetaryAmount accountAmount = Money.of(acount.getBalance(), currencyUnit);
     	
