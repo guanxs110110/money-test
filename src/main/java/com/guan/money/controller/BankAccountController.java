@@ -32,7 +32,9 @@ public class BankAccountController {
         	bankAccountService.transferAccount(fromAccountName, toAccountName, amount, currency);
     	} catch (Exception ex) {
     		return "failed";
-    	}
+    	} finally {
+			bankAccountService.closeEntityManager();
+		}
     	
         return "success";
     }
@@ -47,7 +49,9 @@ public class BankAccountController {
     		bankAccount = bankAccountService.getBankAcount(accountName);
     	} catch (Exception ex) {
     		return null;
-    	}
+    	} finally {
+			bankAccountService.closeEntityManager();
+		}
     	
         return new Gson().toJson(bankAccount);
     }
@@ -64,7 +68,9 @@ public class BankAccountController {
     		bankAccountService.checkAccountBalance(bankAccount, transferAmount, currency);
     	} catch (Exception ex) {
     		return "failed";
-    	}
+    	} finally {
+			bankAccountService.closeEntityManager();
+		}
     	
         return "success";
     }
