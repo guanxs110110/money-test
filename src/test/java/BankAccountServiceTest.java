@@ -13,6 +13,8 @@ import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 @RunWith(SpringRunner.class)
@@ -137,6 +139,8 @@ public class BankAccountServiceTest {
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
+        List<FutureTask> tasks = new ArrayList<FutureTask>();
+
         for (int i = 0; i < 5; i++) {
             FutureTask<String> futureTask = new FutureTask<>(new Callable<String>() {
                 @Override
@@ -167,17 +171,17 @@ public class BankAccountServiceTest {
                     return "finished";
                 }
             });
-            executorService.submit(futureTask);
-            executorService.submit(futureTask1);
+            tasks.add(futureTask);
+            tasks.add(futureTask1);
+        }
 
-            // 获取任务结果，等待任务完成或超时
+        for (FutureTask futureTask : tasks) {
+            executorService.submit(futureTask);
             try {
-                futureTask.get(); // 等待1秒获取结果，超时则抛出异常
-                futureTask1.get();
+                futureTask.get();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         try {
